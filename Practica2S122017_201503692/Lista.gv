@@ -1,0 +1,10 @@
+// The Round Table
+digraph {
+	0 [label=Andrea]
+		0 -> 1 [constraint=false]
+	1 [label=Ernesto]
+		1 -> 2 [constraint=false]
+	2 [label=Lizett]
+		2 -> 3 [constraint=false]
+	3 [label=Sebastian]
+}
