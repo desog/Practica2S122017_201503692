@@ -20,7 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
-public class TestWebServer {
+public class web {
      public static OkHttpClient webClient = new OkHttpClient();
     
     /**
@@ -36,60 +36,17 @@ public class TestWebServer {
 //        System.out.println(r + "---");
     }
     
-    public  void insertarLista(String dato){
-        RequestBody Cuerpo = new FormEncodingBuilder()
-                .add("dato", dato)
-                .build();
-        String r = getString("metodoWeb", Cuerpo);
-        System.out.println(r + "!!!!");
-                
-    }
-    
-    public void eliminarLista(String dato){
-        RequestBody Cuerpoe = new FormEncodingBuilder()
-                .add("indice", dato)
-                .build();
-        String r = getString("eliminar",Cuerpoe);
-        System.out.println(r+"!!");
-    }
-    
-    public void buscarLista(String dato){
-        RequestBody Cuerpob = new FormEncodingBuilder()
-                .add("dato", dato)
-                .build();
-        String r = getString("busqueda",Cuerpob);
-        System.out.println(r+"!!");
-        JOptionPane.showConfirmDialog(null, "Indice de "+ dato +" "+ r);
-    }
-    
-    //PARA COLA
-    
-    public void encolar(String dato){
-    RequestBody Cuerpoe = new FormEncodingBuilder()
-                .add("dato", dato)
-                .build();
-        String r = getString("encolar",Cuerpoe);
-        System.out.println(r+"!!");
-        JOptionPane.showConfirmDialog(null, "Indice de "+ dato +" "+ r);
-    }
     
     public void desencolar(){
     RequestBody Cuerpoe = new FormEncodingBuilder()
-                .add("dato", "a")
+                .add("p", "a")
                 .build();
-        String r = getString("desencolar",Cuerpoe);
+        String r = getString("tarea2",Cuerpoe);
         System.out.println(r+"!!");
        
     }
     
-    public void pares(){
-    RequestBody Cuerpoe = new FormEncodingBuilder()
-                .add("p", "a")
-                .build();
-        String r = getString("metodo",Cuerpoe);
-        System.out.println(r+"!!");
-       
-    }
+    
     
     
     
@@ -97,8 +54,8 @@ public class TestWebServer {
      public  String getString(String metodo, RequestBody formBody) {
 
         try {
-            URL url = new URL("http://0.0.0.0:5000/" + metodo);
-            Request request = new Request.Builder().url(url).post(formBody).build();
+            URL url = new URL("http://desog.pythonanywhere.com/" + metodo);
+            Request request = new Request   .Builder().url(url).post(formBody).build();
             Response response = webClient.newCall(request).execute();//Aqui obtiene la respuesta en dado caso si hayas pues un return en python
             String response_string = response.body().string();//y este seria el string de las respuesta
             return response_string;
